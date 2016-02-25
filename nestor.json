@@ -1,0 +1,10 @@
+{
+  "name": "CircleCI",
+  "permalink": "circleci",
+  "description": "Manage your CircleCI builds with Nestor",
+  "environment_keys": {
+    "NESTOR_CIRCLECI_TOKEN" : true,
+    "NESTOR_CIRCLECI_HOST": false,
+    "NESTOR_GITHUB_ORG": false
+  }
+}
