@@ -18,7 +18,7 @@
     "url": "https://github.com/hubot-scripts/hubot-circleci/issues"
   },
   "dependencies": {
-    "nestorbot": "0.20.0"
+    "nestorbot": "0.21.0"
   },
   "devDependencies": {
     "mocha": "*",
