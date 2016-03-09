@@ -3,8 +3,17 @@
   "permalink": "circleci",
   "description": "Manage your CircleCI builds with Nestor",
   "environment_keys": {
-    "NESTOR_CIRCLECI_TOKEN" : true,
-    "NESTOR_CIRCLECI_HOST": false,
-    "NESTOR_GITHUB_ORG": false
+    "NESTOR_CIRCLECI_TOKEN" : {
+      "required": true,
+      "mode": "user"
+    },
+    "NESTOR_CIRCLECI_HOST": {
+      "required": false,
+      "mode": "user"
+    },
+    "NESTOR_GITHUB_ORG": {
+      "required": false,
+      "mode": "user"
+    }
   }
 }
