@@ -107,7 +107,7 @@ var handleResponse = function(msg, handler, done) {
 };
 
 module.exports = function(robot) {
-  robot.respond(/circle me (\S*)\s*(\S*)/i, function(msg, done) {
+  robot.respond(/circle me (\S*)\s*(\S*)/i, { suggestions: ["circle me <user/repo> [branch]"] }, function(msg, done) {
     var project = escape(toProject(msg.match[1]));
     var branch = msg.match[2] ? escape(msg.match[2]) : 'master';
 
@@ -124,7 +124,7 @@ module.exports = function(robot) {
     }, done));
   });
 
-  robot.respond(/circle last (\S*)\s*(\S*)/i, function(msg, done) {
+  robot.respond(/circle last (\S*)\s*(\S*)/i, { suggestions: ["circle last <user/repo> [branch]"] }, function(msg, done) {
     var project = escape(toProject(msg.match[1]));
     var branch = msg.match[2] ? escape(msg.match[2]) : 'master';
 
@@ -147,7 +147,7 @@ module.exports = function(robot) {
     }));
   });
 
-  robot.respond(/circle retry (.*) (.*)/i, function(msg, done) {
+  robot.respond(/circle retry (.*) (.*)/i, { suggestions: ["circle retry <user/repo> [last | build number]"] }, function(msg, done) {
     var project = escape(toProject(msg.match[1]));
     var build_num = escape(msg.match[2]);
 
@@ -165,7 +165,7 @@ module.exports = function(robot) {
     }
   });
 
-  robot.respond(/circle list (.*)/i, function(msg, done) {
+  robot.respond(/circle list (.*)/i, { suggestions: ["circle list <failed>/<success>"] }, function(msg, done) {
     var status = escape(msg.match[1]);
     if (status !== 'failed' && status !== 'success') {
       msg.send("Status can only be failed or success.", done);
@@ -174,7 +174,7 @@ module.exports = function(robot) {
     getProjectsByStatus(robot, msg, endpoint, status, 'list', done);
   });
 
-  robot.respond(/circle cancel (.*) (.*)/i, function(msg, done) {
+  robot.respond(/circle cancel (.*) (.*)/i, { suggestions: ["circle cancel <user/repo> <build number>"] }, function(msg, done) {
     var project = escape(toProject(msg.match[1]));
     if (msg.match[2] === null) {
       msg.send("I can't cancel without a build number", done);
@@ -189,7 +189,7 @@ module.exports = function(robot) {
     }
   });
 
-  robot.respond(/circle clear (.*)/i, function(msg, done) {
+  robot.respond(/circle clear (.*)/i, { suggestions: ["circle clear <user/repo>"] }, function(msg, done) {
     var project = escape(toProject(msg.match[1]));
     clearProjectCache(msg, endpoint, project, done);
   });
